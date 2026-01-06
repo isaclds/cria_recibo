@@ -1,0 +1,24 @@
+{
+  "name": "cria_recibo",
+  "version": "1.0.0",
+  "description": "Pega um template pronto e cria os recibos a partir de uma planilha do excel",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon index.js"
+  },
+  "keywords": [
+    "Recibo",
+    "Planilha"
+  ],
+  "author": "Isac Lehmkuhl dos Santos",
+  "license": "ISC",
+  "dependencies": {
+    "docxtemplater": "^3.67.6",
+    "dotenv": "^17.2.3",
+    "fs": "^0.0.1-security",
+    "nodemon": "^3.1.11",
+    "pizzip": "^3.2.0"
+  }
+}
