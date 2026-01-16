@@ -4,6 +4,10 @@
   "description": "Pega um template pronto e cria os recibos a partir de uma planilha do excel",
   "main": "index.js",
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/isaclds/cria_recibo.git"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon index.js"
@@ -18,6 +22,7 @@
     "docxtemplater": "^3.67.6",
     "dotenv": "^17.2.3",
     "fs": "^0.0.1-security",
+    "googleapis": "^170.0.0",
     "nodemon": "^3.1.11",
     "pizzip": "^3.2.0"
   }

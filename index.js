@@ -1,7 +1,4 @@
-"use strict";
+import "dotenv/config";
+import init from "./services/employeeService.js";
 
-import dotenv from "dotenv";
-
-dotenv.config();
-
-console.log("Hello World!");
+init();
