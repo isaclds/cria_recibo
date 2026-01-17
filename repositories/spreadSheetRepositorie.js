@@ -1,10 +1,13 @@
 import google from "googleapis";
+import path from "path";
 
 async function getData(idSheet) {
   try {
+    const keyFilePath = path.resolve(process.env.SERVICE_ACCOUNT_FILE);
+
     const auth = new google.Auth.GoogleAuth({
-      keyFile: process.env.SERVICE_ACCOUNT_FILE,
-      scopes: process.env.SCOPE,
+      keyFile: keyFilePath,
+      scopes: [process.env.SCOPE],
     });
 
     const sheets = google.google.sheets({
@@ -18,12 +21,12 @@ async function getData(idSheet) {
     });
 
     if (!response.ok) {
-      throw new Error("Erro ao acessar a planilha: " + response);
+      throw new Error("Erro ao acessar a planilha, na resposta: " + response);
     }
 
     return response.data.values;
-  } catch (error) {
-    throw new Error("Erro ao acessar a planilha:", error);
+  } catch (err) {
+    throw new Error("Erro ao acessar a planilha:", err);
   }
 }
 
@@ -61,4 +64,15 @@ function getEmployeesByFunction(data) {
   return employeesByFunction;
 }
 
-export { getData, getValuesByFunction, getEmployeesByFunction };
+function getDateInfo(data) {
+  const date = new Date(data[1][2]);
+
+  const day = date.getDate();
+  const month = (date.getMonth() + 1).toString().padStart(2, "0");
+  const writtingMonth = date.toLocaleString("pt-BR", { month: "long" });
+  const year = date.getFullYear();
+
+  return { day, writtingMonth, month, year };
+}
+
+export { getData, getValuesByFunction, getEmployeesByFunction, getDateInfo };

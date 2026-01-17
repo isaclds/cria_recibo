@@ -21,9 +21,11 @@
   "dependencies": {
     "docxtemplater": "^3.67.6",
     "dotenv": "^17.2.3",
+    "extenso": "^2.1.0",
     "fs": "^0.0.1-security",
     "googleapis": "^170.0.0",
     "nodemon": "^3.1.11",
+    "path": "^0.12.7",
     "pizzip": "^3.2.0"
   }
 }

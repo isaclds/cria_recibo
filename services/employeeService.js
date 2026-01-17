@@ -3,16 +3,36 @@ import {
   getValuesByFunction,
   getEmployeesByFunction,
 } from "../repositories/spreadSheetRepositorie.js";
+import extenso from "extenso";
 
-async function init() {
-  const data = await getData(process.env.ID_SHEET_2); // Trocar para uma ID que será passada pelo usuário
-
+async function employeesObject(idSheet) {
+  const data = await getData(idSheet);
+  const employeesByFunction = getEmployeesByFunction(data);
   const valuesByFunction = getValuesByFunction(data);
 
-  const employeesByFunction = getEmployeesByFunction(data);
+  const employees = [];
 
-  console.log("Values by Function:", valuesByFunction);
-  console.log("Employees by Function:", employeesByFunction);
+  for (const role in employeesByFunction) {
+    employeesByFunction[role].forEach((employee) => {
+      const value = valuesByFunction[role] || 0;
+
+      employees.push({
+        nome: employee,
+        valor: value,
+        valor_escrito: extenso(value, { mode: "currency" }),
+      });
+    });
+  }
+
+  console.log(employees);
 }
 
-export default init;
+export default employeesObject;
+//   const dateInfo = getDateInfo(data);
+// const day = dateInfo.day;
+// const month = dateInfo.month;
+// const year = dateInfo.year;
+// data: `${day}/${month}/${year}`,
+// data_dia: day,
+// data_mes_escrito: dateInfo.writtingMonth,
+// data_ano: year,

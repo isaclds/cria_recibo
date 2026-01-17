@@ -1,4 +1,4 @@
 import "dotenv/config";
-import init from "./services/employeeService.js";
+import employeesObject from "./services/employeeService.js";
 
-init();
+employeesObject(process.env.ID_SHEET_2);
